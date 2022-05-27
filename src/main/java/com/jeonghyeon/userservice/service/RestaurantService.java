@@ -24,6 +24,6 @@ public class RestaurantService {
 
 
 
-        return new ResponseEntity(restaurant.getMessage(),HttpStatus.CREATED);
+        return new ResponseEntity(restaurant.getMsg(),HttpStatus.CREATED);
     }
 }

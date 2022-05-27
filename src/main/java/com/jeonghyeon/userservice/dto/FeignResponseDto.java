@@ -6,6 +6,6 @@ import org.springframework.http.HttpStatus;
 @Data
 public class FeignResponseDto<T> {
     private int statusCode;
-    private T message;
+    private T msg;
 
 }
