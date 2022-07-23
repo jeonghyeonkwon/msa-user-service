@@ -27,7 +27,7 @@ public class KafkaConsumer {
 
         KafkaUserInfoDto dto = gson.fromJson(kafkaMessage, KafkaUserInfoDto.class);
 
-        Optional<Account> opAccount = accountRepository.findByAccountRandomId(dto.getAccountRandomId());
+        Optional<Account> opAccount = accountRepository.findById(dto.getAccountRandomId());
         if(opAccount.isEmpty()){
             Address address = new Address(dto.getZipCode(), dto.getDetail());
             Account account = new Account(dto.getAccountRandomId(),dto.getAccountId(),dto.getAccountName(),dto.getAccountTel(),address);

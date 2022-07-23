@@ -7,4 +7,5 @@ public class RoleChangeRequestDto {
     private String accountId;
 
     private String accountRole;
+
 }

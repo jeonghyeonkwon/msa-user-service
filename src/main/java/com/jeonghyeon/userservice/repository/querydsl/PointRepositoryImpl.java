@@ -26,7 +26,7 @@ public class PointRepositoryImpl implements PointRepositoryCustom{
     @Override
     public Page<PointResponseDto> pointPageDto(PointStatus pointStatus, Pageable pageable){
         List<PointResponseDto> content = jpaQueryFactory.select(Projections.constructor(PointResponseDto.class,
-                        point.pointRandomId,
+                        point.uuid,
                         point.price,
                         point.createdDate,
                         account.accountId,
@@ -37,7 +37,7 @@ public class PointRepositoryImpl implements PointRepositoryCustom{
                 .where(pointEq(pointStatus))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
-                .orderBy(point.id.desc()).fetch();
+                .orderBy(point.uuid.desc()).fetch();
 
         JPAQuery<Long> countQuery = jpaQueryFactory.select(point.count()).from(point).where(pointEq(pointStatus));
         return PageableExecutionUtils.getPage(content,pageable,()->countQuery.fetchOne());

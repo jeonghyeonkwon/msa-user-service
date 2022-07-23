@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Table(name="points")
 public class Point extends BaseTimeEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="point_pk")
-    private Long id;
 
-    private String pointRandomId;
+    @Column(name="point_pk")
+    private String uuid;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_pk")
@@ -26,7 +26,8 @@ public class Point extends BaseTimeEntity{
 
     protected Point(){}
 
-    public Point(String pointRandomId,Account account,Long price){
+    public Point(String uuid,Account account,Long price){
+        this.uuid = uuid;
         this.account = account;
         account.getPointList().add(this);
         this.price = price;

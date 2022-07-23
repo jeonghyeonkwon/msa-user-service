@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PointRepository extends JpaRepository<Point,Long>, PointRepositoryCustom {
-    Optional<Point> findByPointRandomId(String pointRandomId);
+public interface PointRepository extends JpaRepository<Point,String>, PointRepositoryCustom {
+
 }

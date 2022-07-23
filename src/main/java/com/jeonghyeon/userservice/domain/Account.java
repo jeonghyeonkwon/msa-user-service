@@ -11,11 +11,8 @@ import java.util.List;
 @Table(name="accounts")
 public class Account extends BaseTimeEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="account_pk")
-    private Long id;
-
-    private String accountRandomId;
+    private String uuid;
 
     private String accountId;
 
@@ -37,13 +34,10 @@ public class Account extends BaseTimeEntity{
     private Restaurant restaurant;
 
     @OneToMany(mappedBy = "account")
-    private List<Order> orderList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "account")
     private List<Point> pointList = new ArrayList<>();
 
-    public Account(String accountRandomId,String accountId,String accountName,String accountTel,Address address){
-        this.accountRandomId = accountRandomId;
+    public Account(String uuid,String accountId,String accountName,String accountTel,Address address){
+        this.uuid = uuid;
         this.accountId = accountId;
         this.accountName = accountName;
         this.accountTel = accountTel;
@@ -51,10 +45,6 @@ public class Account extends BaseTimeEntity{
         this.accountRole = AccountRole.NORMAL;
         this.address = address;
     }
-
-
-
-
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }

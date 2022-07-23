@@ -5,9 +5,7 @@ import lombok.Data;
 
 @Data
 public class BasicAccountResponseDto {
-    private Long id;
-
-    private String accountRandomId;
+    private String uuid;
     private String accountId;
 
     private String accountName;
@@ -17,15 +15,15 @@ public class BasicAccountResponseDto {
     private Long price;
 
     private String accountRole;
-    public BasicAccountResponseDto(Long id,
-                                   String accountRandomId,
+    public BasicAccountResponseDto(
+                                   String uuid,
                                    String accountId,
                                    String accountName,
                                    String accountTel,
                                    AccountRole accountRole,
-                                   Long price){
-        this.id = id;
-        this.accountRandomId = accountRandomId;
+                                   Long price
+    ){
+        this.uuid = uuid;
         this.accountId = accountId;
         this.accountName = accountName;
         this.accountTel = accountTel;

@@ -15,14 +15,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseDto illegalStateException(IllegalStateException e){
+        log.error("[IllegalStateException] message -> " + e);
+        return new ResponseDto(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(FeignException.FeignClientException.class)
     public ResponseDto feignException(FeignException.FeignClientException e){
-
-
-
-
-
         log.error("[FeignException] message -> "+e);
-        return new ResponseDto<>(HttpStatus.BAD_REQUEST.value(),e.contentUTF8());
+        return new ResponseDto<>(HttpStatus.BAD_REQUEST.value(),"잘못된 요청입니다. 다시 확인해 주세요");
     }
 }
